@@ -8,7 +8,6 @@ import BookSingleCard from './BookSingleCard';
 import React from 'react';
 
 const BooksCard = ({ books = [] }) => {
-  // Ensure books is an array
   if (!Array.isArray(books)) {
     return <div>No books available</div>;
   }

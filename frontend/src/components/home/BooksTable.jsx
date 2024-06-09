@@ -5,7 +5,6 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import React from 'react';
 
 const BooksTable = ({ books = [] }) => {
-  // Ensure books is an array
   if (!Array.isArray(books)) {
     return <div>No books available</div>;
   }

@@ -4,7 +4,6 @@ import { BiUserCircle } from 'react-icons/bi';
 import React from 'react';
 
 const BookModal = ({ book, onClose }) => {
-  // Ensure book is defined
   if (!book) {
     return null;
   }

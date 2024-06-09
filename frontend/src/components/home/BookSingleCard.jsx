@@ -11,7 +11,6 @@ import React from 'react';
 const BookSingleCard = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
 
-  // Ensure book is defined
   if (!book) {
     return <div>No book data available</div>;
   }
@@ -52,7 +51,6 @@ const BookSingleCard = ({ book }) => {
   );
 };
 
-// Provide default props to ensure book is never undefined
 BookSingleCard.defaultProps = {
   book: null,
 };
