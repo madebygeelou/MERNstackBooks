@@ -1,8 +1,14 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiUserCircle } from 'react-icons/bi';
+import React from 'react';
 
 const BookModal = ({ book, onClose }) => {
+  // Ensure book is defined
+  if (!book) {
+    return null;
+  }
+
   return (
     <div
       className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'
@@ -40,6 +46,10 @@ const BookModal = ({ book, onClose }) => {
       </div>
     </div>
   );
+};
+
+BookModal.defaultProps = {
+  book: null,
 };
 
 export default BookModal;

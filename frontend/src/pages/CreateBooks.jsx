@@ -20,19 +20,22 @@ const CreateBooks = () => {
       publishYear,
     };
     setLoading(true);
-    axios
-      .post('http://localhost:5173/books', data)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar('Book Created successfully', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        setLoading(false);
-        // alert('An error happened. Please Chack console');
-        enqueueSnackbar('Error', { variant: 'error' });
-        console.log(error);
-      });
+    axios.post('http://localhost:5555/books', data, {
+      headers: {
+    'Content-Type': 'application/json',
+      },
+    })
+  .then(() => {
+  setLoading(false);
+  enqueueSnackbar('Book Created successfully', { variant: 'success' });
+  navigate('/');
+    })
+  .catch((error) => {
+  setLoading(false);
+  enqueueSnackbar('Error', { variant: 'error' });
+  console.log(error);
+    });
+
   };
 
   return (
@@ -76,4 +79,4 @@ const CreateBooks = () => {
   );
 }
 
-export default CreateBooks
+export default CreateBooks;

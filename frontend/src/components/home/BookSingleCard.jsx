@@ -6,9 +6,15 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 import { useState } from 'react';
 import BookModal from './BookModal';
+import React from 'react';
 
 const BookSingleCard = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
+
+  // Ensure book is defined
+  if (!book) {
+    return <div>No book data available</div>;
+  }
 
   return (
     <div className='border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl'>
@@ -44,6 +50,11 @@ const BookSingleCard = ({ book }) => {
       )}
     </div>
   );
+};
+
+// Provide default props to ensure book is never undefined
+BookSingleCard.defaultProps = {
+  book: null,
 };
 
 export default BookSingleCard;
