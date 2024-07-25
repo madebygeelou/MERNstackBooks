@@ -1,8 +1,12 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
-import React from 'react';
 
-const BackButton = ({ destination = '/' }) => {
+interface BackButtonProps {
+  destination?: string;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ destination = '/' }) => {
   return (
     <div className='flex'>
       <Link

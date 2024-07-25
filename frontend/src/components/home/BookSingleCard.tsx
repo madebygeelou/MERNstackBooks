@@ -1,17 +1,26 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiUserCircle, BiShow } from 'react-icons/bi';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
-import { useState } from 'react';
 import BookModal from './BookModal';
-import React from 'react';
 
-const BookSingleCard = ({ book }) => {
+interface Book {
+  _id: string;
+  publishYear: string;
+  title: string;
+  author: string;
+}
+
+interface BookSingleCardProps {
+  book: Book | null;
+}
+
+const BookSingleCard: React.FC<BookSingleCardProps> = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
 
-  // Ensure book is defined
   if (!book) {
     return <div>No book data available</div>;
   }
@@ -52,7 +61,6 @@ const BookSingleCard = ({ book }) => {
   );
 };
 
-// Provide default props to ensure book is never undefined
 BookSingleCard.defaultProps = {
   book: null,
 };

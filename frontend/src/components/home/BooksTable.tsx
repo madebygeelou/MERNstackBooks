@@ -1,10 +1,21 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import React from 'react';
 
-const BooksTable = ({ books = [] }) => {
+interface Book {
+  _id: string;
+  title: string;
+  author: string;
+  publishYear: string;
+}
+
+interface BooksTableProps {
+  books?: Book[];
+}
+
+const BooksTable: React.FC<BooksTableProps> = ({ books = [] }) => {
   // Ensure books is an array
   if (!Array.isArray(books)) {
     return <div>No books available</div>;

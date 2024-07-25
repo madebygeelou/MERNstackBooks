@@ -1,0 +1,63 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importStar(require("react"));
+const BackButton_1 = __importDefault(require("../components/BackButton"));
+const Spinner_1 = __importDefault(require("../components/Spinner"));
+const axios_1 = __importDefault(require("axios"));
+const react_router_dom_1 = require("react-router-dom");
+const notistack_1 = require("notistack");
+const DeleteBook = () => {
+    const [loading, setLoading] = (0, react_1.useState)(false);
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const { id } = (0, react_router_dom_1.useParams)(); // Type the params as an object with an 'id' property
+    const { enqueueSnackbar } = (0, notistack_1.useSnackbar)();
+    const handleDeleteBook = () => {
+        setLoading(true);
+        axios_1.default
+            .delete(`http://localhost:5555/books/${id}`)
+            .then(() => {
+            setLoading(false);
+            enqueueSnackbar('Book Deleted successfully', { variant: 'success' });
+            navigate('/');
+        })
+            .catch((error) => {
+            setLoading(false);
+            enqueueSnackbar('Error', { variant: 'error' });
+            console.log(error);
+        });
+    };
+    return (react_1.default.createElement("div", { className: 'p-4' },
+        react_1.default.createElement(BackButton_1.default, null),
+        react_1.default.createElement("h1", { className: 'text-3xl my-4' }, "Delete Book"),
+        loading ? react_1.default.createElement(Spinner_1.default, null) : '',
+        react_1.default.createElement("div", { className: 'flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto' },
+            react_1.default.createElement("h3", { className: 'text-2xl' }, "Are You Sure You want to delete this book?"),
+            react_1.default.createElement("button", { className: 'p-4 bg-red-600 text-white m-8 w-full', onClick: handleDeleteBook }, "Yes, Delete it"))));
+};
+exports.default = DeleteBook;

@@ -1,9 +1,21 @@
+import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiUserCircle } from 'react-icons/bi';
-import React from 'react';
 
-const BookModal = ({ book, onClose }) => {
+interface Book {
+  _id: string;
+  publishYear: string;
+  title: string;
+  author: string;
+}
+
+interface BookModalProps {
+  book: Book | null;
+  onClose: () => void;
+}
+
+const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
   // Ensure book is defined
   if (!book) {
     return null;
